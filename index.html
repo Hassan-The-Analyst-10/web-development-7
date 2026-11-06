@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SpendWise is a smart personal budgeting and expense tracking application.">
+    <meta name="theme-color" content="#102a56">
+
+    <title>SpendWise | Smart Budget Management</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="#" class="logo">
+                Spend<span>Wise.</span>
+            </a>
+
+            <nav class="navigation">
+                <a href="#dashboard">Dashboard</a>
+                <a href="#add-expense">Add Expense</a>
+                <a href="#transactions">Transactions</a>
+            </nav>
+
+            <div class="header-label">
+                Personal Finance
+            </div>
+
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- WELCOME SECTION -->
+        <section class="welcome-section" id="dashboard">
+
+            <div class="welcome-content">
+                <span class="eyebrow">SMART FINANCIAL MANAGEMENT</span>
+
+                <h1>Take Control of Your Money.</h1>
+
+                <p>
+                    Welcome to SpendWise. Track your spending,
+                    manage your budget, and make smarter financial
+                    decisions every day.
+                </p>
+            </div>
+
+            <div class="budget-setting">
+
+                <label for="budgetInput">Monthly Budget (KSh)</label>
+
+                <div class="budget-control">
+
+                    <input
+                        type="number"
+                        id="budgetInput"
+                        min="0"
+                        step="0.01"
+                        value="20000"
+                    >
+
+                    <button type="button" id="updateBudgetBtn">
+                        Update
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DASHBOARD -->
+        <section class="dashboard-grid">
+
+            <article class="summary-card">
+                <div class="card-icon blue">KSh</div>
+                <p>Total Budget</p>
+                <h2 id="totalBudget">KSh 20,000.00</h2>
+                <span>Monthly allocation</span>
+            </article>
+
+            <article class="summary-card">
+                <div class="card-icon red">
+                    <span>−</span>
+                </div>
+                <p>Total Expenses</p>
+                <h2 id="totalExpenses">KSh 0.00</h2>
+                <span>Total money spent</span>
+            </article>
+
+            <article class="summary-card">
+                <div class="card-icon green">
+                    <span>+</span>
+                </div>
+                <p>Remaining Balance</p>
+                <h2 id="remainingBalance">KSh 20,000.00</h2>
+                <span>Available balance</span>
+            </article>
+
+            <article class="summary-card">
+                <div class="card-icon purple">
+                    <span>#</span>
+                </div>
+                <p>Total Transactions</p>
+                <h2 id="expenseCount">0</h2>
+                <span>Recorded expenses</span>
+            </article>
+
+        </section>
+
+
+        <!-- BUDGET OVERVIEW -->
+        <section class="section-card budget-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Budget Overview</h2>
+                    <p>Monitor your monthly spending progress.</p>
+                </div>
+
+                <span id="budgetStatus" class="status-badge">
+                    Within Budget
+                </span>
+
+            </div>
+
+            <div class="progress-information">
+
+                <span>Budget utilization</span>
+
+                <strong id="budgetPercentage">0%</strong>
+
+            </div>
+
+            <div
+                class="progress-track"
+                role="progressbar"
+                aria-label="Budget utilization"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                id="progressTrack"
+            >
+
+                <div id="budgetProgress" class="progress-bar"></div>
+
+            </div>
+
+            <p id="budgetMessage" class="budget-message">
+                You are managing your budget well.
+            </p>
+
+        </section>
+
+
+        <!-- ADD EXPENSE -->
+        <section class="section-card" id="add-expense">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Add New Expense</h2>
+                    <p>Enter your expense details below.</p>
+                </div>
+
+            </div>
+
+
+            <form id="expenseForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="expenseName">Expense Name</label>
+
+                        <input
+                            type="text"
+                            id="expenseName"
+                            placeholder="e.g. Shopping"
+                            maxlength="50"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount (KSh)</label>
+
+                        <input
+                            type="number"
+                            id="expenseAmount"
+                            placeholder="e.g. 1500"
+                            min="0.01"
+                            step="0.01"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="expenseCategory">Category</label>
+
+                        <select id="expenseCategory" required>
+
+                            <option value="">Select category</option>
+                            <option value="Food">Food</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Education">Education</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Bills">Bills</option>
+                            <option value="Other">Other</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="expenseDate">Expense Date</label>
+
+                        <input
+                            type="date"
+                            id="expenseDate"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="primary-button">
+                    + Add Expense
+                </button>
+
+                <p
+                    id="formMessage"
+                    class="form-message"
+                    aria-live="polite"
+                ></p>
+
+            </form>
+
+        </section>
+
+
+        <!-- TRANSACTIONS -->
+        <section class="section-card" id="transactions">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Recent Transactions</h2>
+                    <p>View and manage your expenses.</p>
+                </div>
+
+                <button
+                    type="button"
+                    id="clearExpensesBtn"
+                    class="danger-button"
+                >
+                    Clear All
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Expense</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="expenseList"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <div id="emptyMessage" class="empty-state">
+
+                <div class="empty-icon">◎</div>
+
+                <h3>No expenses yet</h3>
+
+                <p>
+                    Your transactions will appear here after
+                    you add your first expense.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <a href="#" class="logo footer-logo">
+                Spend<span>Wise.</span>
+            </a>
+
+            <p>Manage Your Money. Make Smarter Decisions.</p>
+
+            <p class="copyright">
+                &copy; 2026 SpendWise. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
